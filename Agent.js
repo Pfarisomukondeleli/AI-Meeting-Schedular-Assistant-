@@ -1,6 +1,3 @@
-// ===================
-// AGENT STATE (UI-driven)
-// ===================
 let state = {
     active: false,
     dateRange: null,
@@ -12,9 +9,6 @@ let state = {
 
 let scheduledMeetings = [];
 
-// ===================
-// AGENT OUTPUT (HARD-LIMITED)
-// ===================
 function agentSpeak(message) {
     const MAX = 120;
     const safe = message.length > MAX
@@ -24,9 +18,6 @@ function agentSpeak(message) {
     document.getElementById("agentMessage").innerText = safe;
 }
 
-// ===================
-// UI HELPERS
-// ===================
 function highlightSelected(button, selector) {
     document.querySelectorAll(selector).forEach(btn =>
         btn.classList.remove("active")
@@ -34,9 +25,6 @@ function highlightSelected(button, selector) {
     button.classList.add("active");
 }
 
-// ===================
-// RESET FUNCTIONS
-// ===================
 function resetAgentState() {
     state.active = false;
     state.dateRange = null;
@@ -56,9 +44,6 @@ function resetUISelections() {
     document.getElementById("selectedParticipants").innerHTML = "";
 }
 
-// ===================
-// DATE UTILITIES
-// ===================
 function formatDate(dateObj) {
     return dateObj.toLocaleDateString("en-GB", {
         weekday: "short",
@@ -99,9 +84,6 @@ function getDatesForRange(range) {
     return dates;
 }
 
-// ===================
-// SELECTION HANDLERS
-// ===================
 function selectDateRange(range, button) {
     state.dateRange = range;
     highlightSelected(button, ".selection-row:nth-of-type(2) button");
@@ -116,9 +98,6 @@ function selectTimeWindow(time, button) {
     checkAndProposeMeeting();
 }
 
-// ===================
-// PARTICIPANTS (DOM READY)
-// ===================
 document.addEventListener("DOMContentLoaded", () => {
     const participantItems = document.querySelectorAll(".participant-item");
     const selectedContainer = document.getElementById("selectedParticipants");
@@ -168,7 +147,11 @@ document.addEventListener("DOMContentLoaded", () => {
             renderSelectedParticipants();
             agentSpeak(`${state.participants.length} participant(s) selected`);
             checkAndProposeMeeting();
+
+            participantDropdown.style.display = "none";
+
         };
+
     });
 
     participantBtn.onclick = e => {
@@ -184,9 +167,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 });
 
-// ===================
-// AGENT LOGIC
-// ===================
 function checkAndProposeMeeting() {
     if (
         state.dateRange &&
@@ -197,9 +177,6 @@ function checkAndProposeMeeting() {
     }
 }
 
-// ===================
-// CONFIDENCE (DETERMINISTIC & EXPLAINABLE)
-// ===================
 function calculateConfidence(date, time) {
     const total = state.participants.length;
 
@@ -209,15 +186,12 @@ function calculateConfidence(date, time) {
         )
     ).length;
 
-    // 1. Availability score (0–80)
     const availabilityScore = ((total - unavailable) / total) * 80;
 
-    // 2. Contention penalty (0 or -15)
     const contentionPenalty = scheduledMeetings.some(
         m => m.date === date && m.time === time
     ) ? 15 : 0;
 
-    // 3. Soft uncertainty buffer (always present)
     const uncertaintyBuffer = 5;
 
     const confidence = Math.round(
@@ -238,10 +212,6 @@ function explainConfidence(unavailable) {
     return `${unavailable} participants may be unavailable`;
 }
 
-
-// ===================
-// PROPOSE MEETING
-// ===================
 function proposeMeeting() {
     const dates = getDatesForRange(state.dateRange);
     const slots = {
@@ -275,7 +245,7 @@ function proposeMeeting() {
     }
 
     if (!best) {
-        agentSpeak("No available slots. Update constraints.");
+        agentSpeak("⚠️ No available slots. Update constraints.");
         document.getElementById("proposalSection").classList.add("hidden");
         return;
     }
@@ -307,17 +277,15 @@ function proposeMeeting() {
     `;
 
     document.getElementById("proposalSection").classList.remove("hidden");
+    agentSpeak(`✅Proposal ready`)
 }
 
-// ===================
-// USER ACTIONS
-// ===================
 function suggestAnother() {
     if (!state.currentProposal) return;
     state.rejectedProposals.push(
         `${state.currentProposal.date}|${state.currentProposal.time}`
     );
-    agentSpeak("Alternative slot evaluated");
+    agentSpeak("🔄 Alternative slot evaluated");
     state.currentProposal = null;
     proposeMeeting();
 }
@@ -331,13 +299,24 @@ function confirmMeeting() {
         participants: [...state.participants]
     });
 
-    agentSpeak("Meeting scheduled");
-    resetAgentState();
-    resetUISelections();
+    agentSpeak(
+        `✅ Meeting scheduled · ${state.currentProposal.date} ${state.currentProposal.time}`
+    );
+
+    setTimeout(() => {
+        resetAgentState();
+        resetUISelections();
+        agentSpeak("Waiting for user input...");
+    }, 2500);
 }
+
+resetAgentState();
+resetUISelections();
 
 function changeConstraints() {
     state.currentProposal = null;
     document.getElementById("proposalSection").classList.add("hidden");
-    agentSpeak("Update constraints to continue");
+    agentSpeak("⚠️ Update constraints to continue");
 }
+
+
