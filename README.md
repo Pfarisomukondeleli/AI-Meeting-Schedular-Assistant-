@@ -1,4 +1,4 @@
-# AI-Powered Meeting Scheduler (UI-Constrained Agent)
+# AI-Powered Meeting Scheduler 
 
 ## Overview
 This project implements a **UI-constrained, task-focused agent** for scheduling meetings.  Users select participants, a date range, and a time window via predefined UI controls, and the agent proposes optimal meeting slots with **deterministic, explainable decisions**.
