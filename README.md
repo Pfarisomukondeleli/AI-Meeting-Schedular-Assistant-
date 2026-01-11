@@ -66,7 +66,7 @@ This UI-constrained design prevents those issues.
 ![Participant Selection](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/AI%20Powered%20meeting%20schedular%20landing%20page%20.jpeg)
 
 **2. Date & Time Selection**  
-![Date & Time Selection](screenshots/date-time-selection.png)
+![Date & Time Selection] (https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/proposed%20meeting.jpeg)
 
 **3. Meeting Proposal**  
 ![Proposal Card](screenshots/proposal-card.png)
