@@ -7,14 +7,12 @@ This project implements a **UI-constrained, task-focused agent** for scheduling 
 
 ## How to Run
 1. Clone the repository.  
-2. Open `index.html` in a modern browser (Chrome / Edge / Firefox).  
+2. Open `index.html` in a modern browser (Chrome / Edge ).  
 3. No backend or build steps are required.
 
 ---
 
 ## System Design
-
-### UI vs Agent vs Memory State
 
 **UI**
 - Buttons and dropdowns only (no free-form input)  
@@ -53,7 +51,7 @@ A free-form chat would allow ambiguous inputs, remove enforceable response limit
 This UI-constrained design prevents those issues.
 
 
-### UI 
+### User Interface
 
 **1. Landing page**  
 ![Participant Selection](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/AI%20Powered%20meeting%20schedular%20landing%20page%20.jpeg)
@@ -67,10 +65,9 @@ This UI-constrained design prevents those issues.
 **4. Meeting Confirmed**  
 ![Meeting Confirmed](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/meeting%20confirmed.jpeg)
  
-## System Diagran
-**State Machine Diagram**
-![State Machine diagram](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/state%20diagram.png)
-
-
+## System Diagram
+**State Machine Diagram**  
+![state machine diagram](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/state%20diagram.png)
+ 
 ## Summary
 This project demonstrates **agent-aware interaction design**, deterministic behavior, recoverable failure handling, and clear state management under strict UI constraints.
