@@ -1,8 +1,7 @@
 # AI-Powered Meeting Scheduler (UI-Constrained Agent)
 
 ## Overview
-This project implements a **UI-constrained, task-focused agent** for scheduling meetings.  
-Users select participants, a date range, and a time window via predefined UI controls, and the agent proposes optimal meeting slots with **deterministic, explainable decisions**.
+This project implements a **UI-constrained, task-focused agent** for scheduling meetings.  Users select participants, a date range, and a time window via predefined UI controls, and the agent proposes optimal meeting slots with **deterministic, explainable decisions**.
 
 ---
 
@@ -53,28 +52,22 @@ The agent displays *“No available slots. Update constraints.”*, hides the pr
 A free-form chat would allow ambiguous inputs, remove enforceable response limits, hide task state, complicate corrections, and eliminate visual confidence explanations.  
 This UI-constrained design prevents those issues.
 
----
-
-## Included Artifacts
-- `/screenshots` — UI interaction states  
-- `/diagrams` — System and state flow diagrams  
-- Fully runnable client-side code  
 
 ---### Screenshots
 
-**1. Landing page **  
+**1. Landing page**  
 ![Participant Selection](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/AI%20Powered%20meeting%20schedular%20landing%20page%20.jpeg)
 
 **2. Meeting proposal**  
 ![Date & Time Selection](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/proposed%20meeting.jpeg)
 
-**3. change constraints **  
+**3. change constraints**  
 ![Proposal Card](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/update%20constraints%20.jpeg)
 
 **4. Meeting Confirmed**  
 ![Meeting Confirmed](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/meeting%20confirmed.jpeg)
 
-** State Machine Diagram**
+**State Machine Diagram**
 ![State Machine diagram](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/state%20diagram.png)
 
 
