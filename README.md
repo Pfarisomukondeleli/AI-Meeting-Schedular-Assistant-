@@ -53,7 +53,7 @@ A free-form chat would allow ambiguous inputs, remove enforceable response limit
 This UI-constrained design prevents those issues.
 
 
----### Screenshots
+### UI 
 
 **1. Landing page**  
 ![Participant Selection](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/AI%20Powered%20meeting%20schedular%20landing%20page%20.jpeg)
@@ -66,7 +66,8 @@ This UI-constrained design prevents those issues.
 
 **4. Meeting Confirmed**  
 ![Meeting Confirmed](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/meeting%20confirmed.jpeg)
-
+ 
+## System Diagran
 **State Machine Diagram**
 ![State Machine diagram](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/state%20diagram.png)
 
