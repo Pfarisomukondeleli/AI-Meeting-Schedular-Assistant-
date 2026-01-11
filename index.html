@@ -10,18 +10,14 @@
 
 <body>
 
-    <!-- HEADER -->
     <header>
         <h1>AI-Powered Meeting Scheduler</h1>
     </header>
 
-    <!-- MAIN LAYOUT -->
     <div class="container">
 
-        <!-- LEFT: USER CONTROLS -->
         <div class="main-content">
 
-            <!-- PARTICIPANTS -->
             <div class="selection-row">
                 <h3>Participants</h3>
                 <div class="dropdown">
@@ -37,7 +33,6 @@
                 </div>
             </div>
 
-            <!-- DATE RANGE -->
             <div class="selection-row">
                 <h3>Date Range</h3>
                 <button onclick="selectDateRange('This Week', this)">This Week</button>
@@ -45,7 +40,6 @@
                 <button onclick="selectDateRange('Next 30 Days', this)">Next 30 Days</button>
             </div>
 
-            <!-- TIME WINDOW -->
             <div class="selection-row">
                 <h3>Preferred Time</h3>
                 <button onclick="selectTimeWindow('Morning', this)">Morning</button>
@@ -53,9 +47,8 @@
                 <button onclick="selectTimeWindow('Evening', this)">Evening</button>
             </div>
 
-            <!-- AGENT PROPOSAL -->
             <section id="proposalSection" class="proposal-section hidden">
-                <h3>Agent Proposal</h3>
+                <h3>Proposed Meeting</h3>
 
                 <div class="proposal-card" id="proposalCard">
                     <p class="proposal-title">Meeting Proposal</p>
@@ -71,7 +64,6 @@
 
         </div>
 
-        <!-- RIGHT: PERSISTENT AGENT STATUS -->
         <aside class="agent-panel">
             <h3>Agent Status</h3>
             <div class="status-box" id="agentMessage">
@@ -81,7 +73,6 @@
 
     </div>
 
-    <!-- SCRIPT -->
     <script src="Agent.js"></script>
 </body>
 
