@@ -75,7 +75,7 @@ This UI-constrained design prevents those issues.
 ![Meeting Confirmed](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/meeting%20confirmed.jpeg)
 
 ** State Machine Diagram**
-![State Machine diagram]()
+![State Machine diagram](https://github.com/Pfarisomukondeleli/AI-Meeting-Schedular-Assistant-/blob/main/state%20diagram.png)
 
 
 ## Summary
