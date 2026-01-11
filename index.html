@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Agentic Meeting Scheduler Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>AI-Powered Meeting Scheduler</h1>
+    </header>
+
+    <!-- MAIN LAYOUT -->
+    <div class="container">
+
+        <!-- LEFT: USER CONTROLS -->
+        <div class="main-content">
+
+            <!-- PARTICIPANTS -->
+            <div class="selection-row">
+                <h3>Participants</h3>
+                <div class="dropdown">
+                    <button id="participantBtn">Select Participants</button>
+                    <div id="selectedParticipants" class="pill-container"></div>
+
+                    <div class="dropdown-content" id="participantDropdown">
+                        <div class="participant-item">Alice</div>
+                        <div class="participant-item">Bob</div>
+                        <div class="participant-item">Carol</div>
+                        <div class="participant-item">David</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DATE RANGE -->
+            <div class="selection-row">
+                <h3>Date Range</h3>
+                <button onclick="selectDateRange('This Week', this)">This Week</button>
+                <button onclick="selectDateRange('Next Week', this)">Next Week</button>
+                <button onclick="selectDateRange('Next 30 Days', this)">Next 30 Days</button>
+            </div>
+
+            <!-- TIME WINDOW -->
+            <div class="selection-row">
+                <h3>Preferred Time</h3>
+                <button onclick="selectTimeWindow('Morning', this)">Morning</button>
+                <button onclick="selectTimeWindow('Afternoon', this)">Afternoon</button>
+                <button onclick="selectTimeWindow('Evening', this)">Evening</button>
+            </div>
+
+            <!-- AGENT PROPOSAL -->
+            <section id="proposalSection" class="proposal-section hidden">
+                <h3>Agent Proposal</h3>
+
+                <div class="proposal-card" id="proposalCard">
+                    <p class="proposal-title">Meeting Proposal</p>
+                    <div id="proposalInfo"></div>
+                </div>
+
+                <div class="actions">
+                    <button class="primary" onclick="confirmMeeting()">Accept</button>
+                    <button class="secondary" onclick="suggestAnother()">Suggest Another</button>
+                    <button class="danger" onclick="changeConstraints()">Change Constraints</button>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- RIGHT: PERSISTENT AGENT STATUS -->
+        <aside class="agent-panel">
+            <h3>Agent Status</h3>
+            <div class="status-box" id="agentMessage">
+                Waiting for user input…
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- SCRIPT -->
+    <script src="Agent.js"></script>
+</body>
+
+</html>
