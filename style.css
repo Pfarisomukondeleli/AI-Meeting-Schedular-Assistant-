@@ -1,244 +1,79 @@
-/* ---------- BODY & GLOBAL ---------- */
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(to bottom right, #f5f7fa, #e0f2ff);
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    color: #1f2937;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-/* ---------- MAIN CONTAINER ---------- */
-.container {
-    display: flex;
-    gap: 20px;
-    max-width: 1100px;
-    margin: 1px auto;
-    padding: 20px;
-    border: 1px solid #cbd5e1;
-    border-radius: 16px;
-    background-color: #fff;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    min-height: 520px;
-}
+<head>
+    <meta charset="UTF-8" />
+    <title>Agentic Meeting Scheduler Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+</head>
 
-/* ---------- LEFT CONTENT ---------- */
-.main-content {
-    flex: 3;
-}
+<body>
 
-/* ---------- RIGHT AGENT PANEL ---------- */
-.agent-panel {
-    flex: 1;
-    background: #f8fafc;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    padding: 16px;
-    height: fit-content;
-    position: sticky;
-    top: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
+    <header>
+        <h1>AI-Powered Meeting Scheduler</h1>
+    </header>
 
-.agent-panel h3 {
-    margin-top: 0;
-    font-size: 1rem;
-    font-weight: 600;
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 6px;
-}
+    <div class="container">
 
-/* ---------- HEADER ---------- */
-header {
-    background: linear-gradient(90deg, #0b5ed7, #3b82f6, #0d6efd);
-    background-size: 300% 300%;
-    animation: gradientShift 8s ease infinite;
-    color: #fff;
-    padding: 10px 24px;
-    font-size: 1.4rem;
-    line-height: 1.2;
-    font-family: 'Times New Roman';
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
-}
+        <div class="main-content">
 
-header h1 {
-    margin: 0;
-    font-size: 26px;
-}
+            <div class="selection-row">
+                <h3>Participants</h3>
+                <div class="dropdown">
+                    <button id="participantBtn">Select Participants</button>
+                    <div id="selectedParticipants" class="pill-container"></div>
 
-/* ---------- GRADIENT ANIMATION ---------- */
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
+                    <div class="dropdown-content" id="participantDropdown">
+                        <div class="participant-item">Alice</div>
+                        <div class="participant-item">Bob</div>
+                        <div class="participant-item">Carol</div>
+                        <div class="participant-item">David</div>
+                    </div>
+                </div>
+            </div>
 
-    50% {
-        background-position: 100% 50%;
-    }
+            <div class="selection-row">
+                <h3>Date Range</h3>
+                <button onclick="selectDateRange('This Week', this)">This Week</button>
+                <button onclick="selectDateRange('Next Week', this)">Next Week</button>
+                <button onclick="selectDateRange('Next 30 Days', this)">Next 30 Days</button>
+            </div>
 
-    100% {
-        background-position: 0% 50%;
-    }
-}
+            <div class="selection-row">
+                <h3>Preferred Time</h3>
+                <button onclick="selectTimeWindow('Morning', this)">Morning</button>
+                <button onclick="selectTimeWindow('Afternoon', this)">Afternoon</button>
+                <button onclick="selectTimeWindow('Evening', this)">Evening</button>
+            </div>
 
-/* ---------- SELECTION ROWS ---------- */
-.selection-row {
-    margin-bottom: 14px;
-}
+            <section id="proposalSection" class="proposal-section hidden">
+                <h3>Proposed Meeting</h3>
 
-.selection-row h3 {
-    margin-bottom: 6px;
-    font-size: 15px;
-    color: #374151;
-}
+                <div class="proposal-card" id="proposalCard">
+                    <p class="proposal-title">Meeting Proposal</p>
+                    <div id="proposalInfo"></div>
+                </div>
 
-/* ---------- BUTTONS ---------- */
-button {
-    padding: 10px 16px;
-    font-size: 14px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background: #f1f1f1;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    margin-right: 6px;
-}
+                <div class="actions">
+                    <button class="primary" onclick="confirmMeeting()">Accept</button>
+                    <button class="secondary" onclick="suggestAnother()">Suggest Another</button>
+                    <button class="danger" onclick="changeConstraints()">Change Constraints</button>
+                </div>
+            </section>
 
-button:hover {
-    transform: scale(1.04);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
+        </div>
 
-button.primary {
-    background: #0b5ed7;
-    color: #fff;
-    border: none;
-}
+        <aside class="agent-panel">
+            <h3>Agent Status</h3>
+            <div class="status-box" id="agentMessage">
+                Waiting for user input…
+            </div>
+        </aside>
 
-button.secondary {
-    background: #6c757d;
-    color: #fff;
-    border: none;
-}
+    </div>
 
-button.danger {
-    background: #dc3545;
-    color: #fff;
-    border: none;
-}
+    <script src="Agent.js"></script>
+</body>
 
-button.active {
-    background: #0b5ed7;
-    color: #fff;
-}
-
-/* ---------- STATUS BOX ---------- */
-.status-box {
-    background: #eef2f7;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    margin-top: 10px;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
-    min-height: 60px;
-}
-
-/* ---------- PROPOSAL SECTION ---------- */
-.proposal-section {
-    margin-top: 18px;
-}
-
-.proposal-card {
-    background: #f9fafb;
-    border-radius: 12px;
-    padding: 16px;
-    border-left: 4px solid #0b5ed7;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-}
-
-.proposal-title {
-    font-weight: 600;
-    margin-top: 0;
-}
-
-.actions {
-    margin-top: 10px;
-}
-
-/* ---------- PARTICIPANT PILLS ---------- */
-.pill-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 6px 0;
-}
-
-.pill {
-    background-color: #0b5ed7;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-}
-
-.pill .remove {
-    margin-left: 8px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* ---------- DROPDOWN ---------- */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background: #fff;
-    min-width: 180px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 10;
-    padding: 8px 0;
-}
-
-.dropdown-content .participant-item {
-    padding: 8px 14px;
-    cursor: pointer;
-}
-
-.dropdown-content .participant-item:hover {
-    background: #0b5ed7;
-    color: #fff;
-}
-
-/* ---------- UTILITIES ---------- */
-.hidden {
-    display: none;
-}
-
-/* ---------- MICRO ANIMATIONS ---------- */
-.fade-in {
-    animation: fadeIn 0.4s ease forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+</html>
